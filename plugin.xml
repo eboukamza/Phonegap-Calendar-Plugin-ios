@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="com.phonegap.calendarPlugin"
+	version="1.0.0">
+
+	<name>iOS Calendar Plugin for PhoneGap/Cordova</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/calendarPlugin.js" name="calendarPlugin">
+        <clobbers target="calendarPlugin" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+		
+        <config-file target="config.xml" parent="/*">
+            <feature name="calendarPlugin">
+                <param name="ios-package" value="calendarPlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/calendarPlugin.h" />
+        <source-file src="src/ios/calendarPlugin.m" />
+		
+		<framework src="EventKit.framework" />
+		<framework src="EventKitUI.framework" />
+    </platform>
+</plugin>
