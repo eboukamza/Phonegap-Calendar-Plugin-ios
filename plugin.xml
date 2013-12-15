@@ -24,7 +24,8 @@
         </config-file>
 
         <header-file src="src/ios/calendarPlugin.h" />
-        <source-file src="src/ios/calendarPlugin.m" />
+
+        <source-file src="src/ios/calendarPlugin.m" compiler-flags="-fno-objc-arc"/>
 		
 		<framework src="EventKit.framework" />
 		<framework src="EventKitUI.framework" />
