@@ -80,10 +80,10 @@
 
 #pragma mark Cordova functions
 
-- (void)createEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+- (void)createEvent:(CDVInvokedUrlCommand *)command {
     // Import arguments
     
-    NSString *callbackId = [arguments pop];
+    NSArray *arguments = command.arguments;
     
     NSString* title      = [arguments objectAtIndex:0];
     NSString* location   = [arguments objectAtIndex:1];
@@ -131,13 +131,13 @@
         CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                                            messageAsString:error.userInfo.description];
         
-        [self writeJavascript:[pluginResult toErrorCallbackString:callbackId]];
+        [self writeJavascript:[pluginResult toErrorCallbackString:command.callbackId]];
         
     }
     else {
         NSLog(@"Reached Success");
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [self writeJavascript:[pluginResult toSuccessCallbackString:callbackId]];
+        [self writeJavascript:[pluginResult toSuccessCallbackString:command.callbackId]];
     }
 
     
